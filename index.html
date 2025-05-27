@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Drum Kit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <div class="bg-animated"></div>
+    <div class="container">
+        <h1><span class="drum-emoji">🥁</span> Drum Kit Pro</h1>
+        <p class="subtitle">¡Toca la batería con tu teclado o haz clic en los pads!</p>
+        <div class="drumkit-layout">
+            <div class="drum-row">
+                <div class="key cymbal" data-key="83"><span>🥁</span><span>S</span><small>HiHat</small></div>
+                <div class="key cymbal" data-key="70"><span>🥁</span><span>F</span><small>OpenHat</small></div>
+                <div class="key cymbal" data-key="72"><span>🥁</span><span>H</span><small>Ride</small></div>
+            </div>
+            <div class="drum-row">
+                <div class="key tom" data-key="75"><span>🛢️</span><span>K</span><small>Tom</small></div>
+                <div class="key snare" data-key="74"><span>🥁</span><span>J</span><small>Snare</small></div>
+                <div class="key tom" data-key="76"><span>🛢️</span><span>L</span><small>Tink</small></div>
+            </div>
+            <div class="drum-row">
+                <div class="key kick" data-key="68"><span>🦶</span><span>D</span><small>Kick</small></div>
+                <div class="key clap" data-key="65"><span>👏</span><span>A</span><small>Clap</small></div>
+                <div class="key boom" data-key="71"><span>💥</span><span>G</span><small>Boom</small></div>
+            </div>
+        </div>
+        <div class="instructions">
+            <p><b>Controles:</b> Usa las teclas <b>A S D F G H J K L</b> o haz clic en los pads.</p>
+        </div>
+        <!-- Audio elements -->
+        <audio data-key="65" src="sounds/clap.wav"></audio>
+        <audio data-key="83" src="sounds/hihat.wav"></audio>
+        <audio data-key="68" src="sounds/kick.wav"></audio>
+        <audio data-key="70" src="sounds/openhat.wav"></audio>
+        <audio data-key="71" src="sounds/boom.wav"></audio>
+        <audio data-key="72" src="sounds/ride.wav"></audio>
+        <audio data-key="74" src="sounds/snare.wav"></audio>
+        <audio data-key="75" src="sounds/tom.wav"></audio>
+        <audio data-key="76" src="sounds/tink.wav"></audio>
+    </div>
+    <footer>
+        <p>🎵 <span class="footer-gradient">Drum Kit Pro</span> &copy; 2025 &mdash; Hecho por <a style="color: cyan;" href="https://github.com/Pablirry" target="_blank">Pablirry</a></p>
+    </footer>
+    <script src="src/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centra verticalmente el contenido principal */
+    align-items: center;
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    background: none; /* el fondo animado ya está en .bg-animated */
+}
+
+.bg-animated {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 0;
+    background: linear-gradient(120deg, #232526 0%, #414345 100%);
+    overflow: hidden;
+}
+.bg-animated::before, .bg-animated::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: moveBg 16s infinite alternate;
+}
+.bg-animated::before {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, #61dafb 0%, #232526 80%);
+    left: -200px; top: -200px;
+    animation-delay: 0s;
+}
+.bg-animated::after {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #f7971e 0%, #414345 80%);
+    right: -150px; bottom: -150px;
+    animation-delay: 8s;
+}
+@keyframes moveBg {
+    0% { transform: scale(1) translateY(0);}
+    100% { transform: scale(1.2) translateY(60px);}
+}
+
+.container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    background: rgba(30, 30, 40, 0.75);
+    backdrop-filter: blur(8px);
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+    border-radius: 28px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    margin-top: 40px;
+    max-width: 650px;
+    border: 1.5px solid rgba(97,218,251,0.12);
+}
+
+h1 {
+    color: #fff;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 0.2em;
+    font-size: 2.7rem;
+    font-family: 'Orbitron', 'Montserrat', sans-serif;
+    text-shadow: 0 2px 12px #61dafb44;
+}
+.drum-emoji {
+    font-size: 2.2rem;
+    vertical-align: middle;
+}
+
+.subtitle {
+    color: #b0b0b0;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.15rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.drumkit-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.drum-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.key {
+    background: rgba(255,255,255,0.13);
+    border: 2.5px solid #61dafb;
+    border-radius: 50%;
+    box-shadow: 0 4px 24px rgba(97,218,251,0.13), 0 1.5px 0 #fff3 inset;
+    color: #fff;
+    font-size: 1.3rem;
+    width: 100px;
+    height: 100px;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: 
+        background 0.18s cubic-bezier(.25,.8,.25,1),
+        color 0.18s cubic-bezier(.25,.8,.25,1),
+        box-shadow 0.18s cubic-bezier(.25,.8,.25,1),
+        transform 0.12s cubic-bezier(.25,.8,.25,1);
+    position: relative;
+    user-select: none;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.key::after {
+    content: '';
+    position: absolute;
+    top: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 18px;
+    background: linear-gradient(180deg, #fff8 0%, #fff0 100%);
+    border-radius: 50%;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.key span:first-child {
+    font-size: 2.1rem;
+    margin-bottom: 0.2rem;
+    filter: drop-shadow(0 2px 2px #0004);
+}
+
+.key span:nth-child(2) {
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 0.1rem;
+    font-family: 'Orbitron', 'Montserrat', sans-serif;
+    color: #fff;
+    text-shadow: 0 1px 6px #61dafb33;
+}
+
+.key small {
+    font-size: 0.95rem;
+    color: #61dafb;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 1px 6px #61dafb22;
+}
+
+.key:active,
+.key.playing {
+    background: linear-gradient(135deg, #61dafb 60%, #fff 100%);
+    color: #232526;
+    box-shadow: 0 0 40px #61dafb, 0 4px 20px rgba(97,218,251,0.3);
+    border-color: #fff;
+    transform: scale(1.13) rotate(-2deg);
+    animation: bounce 0.18s cubic-bezier(.25,.8,.25,1);
+}
+@keyframes bounce {
+    0% { transform: scale(1.13) rotate(-2deg);}
+    50% { transform: scale(1.18) rotate(2deg);}
+    100% { transform: scale(1.13) rotate(-2deg);}
+}
+
+.key.cymbal { border-color: #ffe066; }
+.key.snare { border-color: #f67280; }
+.key.kick { border-color: #355c7d; }
+.key.tom { border-color: #43cea2; }
+.key.clap { border-color: #fcb69f; }
+.key.boom { border-color: #ff5858; }
+
+.key.active-key {
+    box-shadow: 0 0 0 4px #fff9, 0 0 40px #61dafb, 0 4px 20px rgba(97,218,251,0.3);
+    border-width: 3.5px;
+}
+
+.instructions {
+    color: #b0b0b0;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.08rem;
+    font-family: 'Montserrat', sans-serif;
+    background: rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px #61dafb11;
+}
+
+footer {
+    flex-shrink: 0;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: rgba(30,30,40,0.85);
+    padding: 0.7rem 0;
+    color: #b0b0b0;
+    font-size: 1.08rem;
+    text-align: center;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 10;
+    box-shadow: 0 -2px 16px #23252633;
+}
+.footer-gradient {
+    background: linear-gradient(90deg, #61dafb 0%, #ffe066 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-family: 'Orbitron', 'Montserrat', sans-serif;
+}
+
+@media (max-width: 700px) {
+    .container {
+        padding: 1rem;
+        max-width: 98vw;
+    }
+    .drum-row {
+        gap: 0.6rem;
+    }
+    .key {
+        width: 62px;
+        height: 62px;
+        font-size: 0.9rem;
+    }
+    .key span:first-child {
+        font-size: 1.2rem;
+    }
+    .key span:nth-child(2) {
+        font-size: 0.9rem;
+    }
+    .key small {
+        font-size: 0.7rem;
+    }
+}
